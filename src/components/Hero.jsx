@@ -84,11 +84,11 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-16 md:pb-24">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 md:px-10 pt-28 pb-14 md:pt-32 md:pb-24">
         <div data-hero-copy>
           <p
             data-hero-meta
-            className="font-['JetBrains_Mono'] text-[14px] tracking-[0.22em] uppercase text-white/70 mb-8"
+            className="font-['JetBrains_Mono'] text-[12px] md:text-[14px] tracking-[0.2em] uppercase text-white/70 mb-5 md:mb-8"
           >
             Koregaon Park · Pune · Est. Lane 5
           </p>
@@ -104,20 +104,20 @@ export default function Hero() {
 
           <p
             data-hero-meta
-            className="mt-7 max-w-[46ch] font-['General_Sans'] text-[17px] md:text-[19px] leading-relaxed text-white/80"
+            className="mt-5 md:mt-7 max-w-[46ch] font-['General_Sans'] text-[16px] md:text-[19px] leading-relaxed text-white/80"
           >
             Pune's favourite travel-themed cafe — filter coffee, all-day brunch and garden seating,
             rated 4.7★ by over 1,200 people.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
+          <div className="mt-7 md:mt-10 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
             <a
               data-hero-meta
               data-magnetic
               href={WHATSAPP}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex h-[60px] items-center justify-center rounded-full bg-[#FAFAF9] px-9 font-['General_Sans'] font-medium text-[#0C0A09] transition-colors hover:bg-[#A16207] hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/40"
+              className="group inline-flex h-[58px] w-full sm:w-auto items-center justify-center rounded-full bg-[#FAFAF9] px-9 font-['General_Sans'] font-medium text-[#0C0A09] transition-colors hover:bg-[#A16207] hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/40"
             >
               Reserve a table
               <span className="ml-3 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
@@ -136,7 +136,7 @@ export default function Hero() {
 
           <div
             data-hero-meta
-            className="mt-14 flex flex-wrap items-center gap-x-10 gap-y-3 border-t border-white/15 pt-6 font-['JetBrains_Mono'] text-[13px] uppercase tracking-[0.16em] text-white/65"
+            className="mt-9 md:mt-14 flex flex-wrap items-center gap-x-6 md:gap-x-10 gap-y-2 border-t border-white/15 pt-5 md:pt-6 font-['JetBrains_Mono'] text-[13px] uppercase tracking-[0.16em] text-white/65"
           >
             <span className="text-white">4.7 ★ Google</span>
             <span>1,275+ reviews</span>

@@ -51,7 +51,7 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between" aria-label="Main navigation">
         <a 
           href="/" 
-          className="font-['Satoshi'] text-2xl font-bold text-[#1C1917] tracking-[-0.02em] focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg"
+          className="font-['Satoshi'] text-lg sm:text-xl md:text-2xl whitespace-nowrap font-bold text-[color:var(--ink)] tracking-[-0.02em] focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg"
         >
           Cafe - The Voyage
         </a>
@@ -61,7 +61,7 @@ const Header = () => {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="font-['General_Sans'] text-[#1C1917] hover:text-[#A16207] transition-colors focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg py-2"
+                className="font-['General_Sans'] text-[color:var(--ink)] hover:text-[#A16207] transition-colors focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg py-2"
               >
                 {l.label}
               </a>
@@ -70,10 +70,10 @@ const Header = () => {
         </ul>
 
         <div className="flex items-center gap-2 md:gap-4">
-          <div className="hidden sm:block"><AtmosphereToggle /></div>
+          <div className="hidden md:block"><AtmosphereToggle /></div>
           <a 
             href="tel:+918596950267" 
-            className="flex items-center justify-center min-h-[44px] min-w-[44px] text-[#1C1917] hover:text-[#A16207] transition-colors focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg"
+            className="flex items-center justify-center min-h-[44px] min-w-[44px] text-[color:var(--ink)] hover:text-[#A16207] transition-colors focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg"
             aria-label="Call Cafe - The Voyage"
           >
             <span className="hidden md:block font-['General_Sans'] font-medium mr-2">+91 85969 50267</span>
@@ -84,7 +84,7 @@ const Header = () => {
 
           <a 
             href="#booking" 
-            className="flex items-center justify-center min-h-[44px] px-6 bg-[#1C1917] text-[#FFFFFF] rounded-[16px] font-['General_Sans'] font-medium hover:bg-[#A16207] transition-all duration-300 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#A16207] focus-visible:outline-none"
+            className="hidden md:flex items-center justify-center min-h-[44px] px-6 whitespace-nowrap bg-[#1C1917] text-[#FFFFFF] rounded-[16px] font-['General_Sans'] font-medium hover:bg-[#A16207] transition-all duration-300 active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#A16207] focus-visible:outline-none"
           >
             Book a Table
           </a>
@@ -95,7 +95,7 @@ const Header = () => {
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            className="lg:hidden flex items-center justify-center min-h-[44px] min-w-[44px] text-[#1C1917] rounded-lg focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none"
+            className="lg:hidden flex items-center justify-center min-h-[44px] min-w-[44px] text-[color:var(--ink)] rounded-lg focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
               {open ? (
@@ -111,7 +111,7 @@ const Header = () => {
       <div
         id="mobile-menu"
         hidden={!open}
-        className="lg:hidden border-t border-[#D6D3D1] bg-[#FAFAF9]/95 backdrop-blur-md"
+        className="lg:hidden border-t border-[color:var(--line)] bg-[color:var(--bg)]/95 backdrop-blur-md"
       >
         <ul className="px-4 py-3" role="list">
           {LINKS.map((l) => (
@@ -119,13 +119,24 @@ const Header = () => {
               <a
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="flex items-center min-h-[52px] font-['General_Sans'] text-lg text-[#1C1917] border-b border-[#E7E5E4] last:border-0 focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg"
+                className="flex items-center min-h-[52px] font-['General_Sans'] text-lg text-[color:var(--ink)] border-b border-[color:var(--line)] last:border-0 focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg"
               >
                 {l.label}
               </a>
             </li>
           ))}
         </ul>
+
+        <div className="flex items-center justify-between gap-4 border-t border-[color:var(--line)] px-4 py-5">
+          <AtmosphereToggle />
+          <a
+            href="#booking"
+            onClick={() => setOpen(false)}
+            className="flex min-h-[52px] flex-1 items-center justify-center rounded-full bg-[color:var(--ink)] px-6 font-['General_Sans'] font-medium text-[color:var(--bg)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#A16207]/40"
+          >
+            Book a Table
+          </a>
+        </div>
       </div>
     </header>
   );
