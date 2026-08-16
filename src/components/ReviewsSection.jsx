@@ -41,7 +41,7 @@ export default function ReviewsSection() {
   }, [page]);
 
   return (
-    <section className="py-20 bg-[#FAFAF9] overflow-hidden" aria-labelledby="reviews-heading">
+    <section id="reviews" className="py-20 bg-[#FAFAF9] overflow-hidden" aria-labelledby="reviews-heading">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">

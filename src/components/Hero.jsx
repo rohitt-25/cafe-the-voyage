@@ -66,7 +66,7 @@ const Hero = () => {
           <div className="flex-1 w-full h-[400px] lg:h-[600px] rounded-[16px] overflow-hidden border border-[#D6D3D1] shadow-[0_4px_10px_rgba(0,0,0,0.1)] relative">
             <img 
               ref={imageRef}
-              src="/assets/hero-cafe.webp"
+              src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWlcbQLbduUxhN6Kd-T7saMIvXydhIQo6LpnW5QZ4GOOB2U4lBOqoBKmc0VftYkjxpihhP8B3rr6zFHs5yn-qvpphpPzJspqtBgwcY3ANiBjRGpd-mnXLt8cEyg3zFMXCXPMc0CF=w1920-h1080-k-no"
               alt="Cozy interior of Cafe - The Voyage with warm lighting and travel-themed decor"
               width="800"
               height="600"

@@ -131,3 +131,35 @@
     border-radius: 20px;
   }
 }
+
+
+/* Printing a cafe page is nearly always about the address, hours and menu —
+   so drop the furniture, force legible ink, and expose link destinations. */
+@media print {
+  header, .fixed, [aria-hidden="true"] { display: none !important; }
+  html, body { background: #fff !important; color: #000 !important; }
+  main { padding-top: 0 !important; }
+  section { break-inside: avoid; page-break-inside: avoid; padding: 12px 0 !important; }
+  img { max-width: 45% !important; height: auto !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10pt; word-break: break-all; }
+  a[href^="tel:"]::after, a[href^="#"]::after { content: ""; }
+}
+
+/* Images fade in once decoded rather than flashing in half-loaded. */
+img[data-fade] { opacity: 0; transition: opacity .5s ease; }
+@media (prefers-reduced-motion: reduce) { img[data-fade] { transition: none; } }
+
+
+/* Film grain. Inlined as a data URI in CSS rather than a JSX class, because a
+   data URI's quotes terminate the className attribute; and as a generated SVG
+   rather than /noise.png, which was referenced but never actually created. */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}

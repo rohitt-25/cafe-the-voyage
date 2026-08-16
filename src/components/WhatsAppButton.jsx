@@ -3,7 +3,7 @@ import gsap from 'gsap';
 
 const WhatsAppButton = () => {
   const btnRef = useRef(null);
-  const whatsappUrl = "https://wa.me/918596950267?text=Hi,%20I'd%20like%20to%20book%20a%20table%20at%20Cafe%20-%20The%20Voyage";
+  const whatsappUrl = "https://wa.me/918596950267?text=Hi,%20I&utm_source=website&utm_medium=cta&utm_campaign=book_table'd%20like%20to%20book%20a%20table%20at%20Cafe%20-%20The%20Voyage";
 
   useEffect(() => {
     const el = btnRef.current;

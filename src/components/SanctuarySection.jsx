@@ -2,12 +2,12 @@ import React from 'react';
 
 const SanctuarySection = () => {
   return (
-    <section className="py-2xl md:py-3xl bg-[#FAFAF9]">
+    <section id="booking" className="py-2xl md:py-3xl bg-[#FAFAF9]">
       <div className="max-w-7xl mx-auto px-md md:px-lg">
         <div className="relative flex flex-col md:flex-row items-center gap-lg md:gap-0">
           {/* Image Band */}
           <div className="w-full md:w-[65%] overflow-hidden rounded-2xl border border-[#D6D3D1]">
-            <img 
+            <img data-fade 
               src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn19jT9PySmtgYS3BMvw8ox18bqxJkJL9JwY9QcyMfHA680ND4yAao5F_ZR5cMVVLMZrj-LzJGo7vEArFk3kcKcYaDs14e966vg6o6Dy831ErtS9X5bKmSaprkOf11w2gsuBRtBSRCUVxlb=w1920-h1080-k-no"
               alt="Clean, well-lit interior and seating area of Cafe - The Voyage"
               className="w-full h-[400px] md:h-[500px] object-cover"

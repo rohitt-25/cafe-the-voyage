@@ -9,17 +9,22 @@ import SanctuarySection from './components/SanctuarySection';
 import ReviewsSection from './components/ReviewsSection';
 import FAQSection from './components/FAQSection';
 import WhatsAppButton from './components/WhatsAppButton';
+import { SkipLink, ScrollProgress, BackToTop, useImageFadeIn } from './components/SiteChrome';
 
 function App() {
+  useImageFadeIn();
+
   return (
     <div className="min-h-screen bg-[#FAFAF9] text-[#0C0A09] font-['General_Sans'] overflow-x-hidden selection:bg-[#A16207] selection:text-[#FFFFFF]">
+      <SkipLink />
+      <ScrollProgress />
       <MotionController />
       
-      <div className="fixed inset-0 pointer-events-none z-50 opacity-[0.03] mix-blend-overlay bg-[url('/noise.png')] bg-repeat" />
+      <div className="noise-overlay" aria-hidden="true" />
 
       <Header />
       
-      <main>
+      <main id="main">
         <Hero 
           subcopy="Join Pune's favorite travel-themed cafe, rated 4.7 stars by over 1,200 food lovers."
         />
@@ -42,6 +47,7 @@ function App() {
         <FAQSection />
       </main>
 
+      <BackToTop />
       <WhatsAppButton />
     </div>
   );

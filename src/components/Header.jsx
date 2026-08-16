@@ -1,10 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const LINKS = [
+  { href: '#menu', label: 'Menu' },
+  { href: '#story', label: 'Our Story' },
+  { href: '#reviews', label: 'Reviews' },
+  { href: '#faq', label: 'FAQ' },
+];
+
 const Header = () => {
+  const [open, setOpen] = useState(false);
+
+  // Close the menu on Escape and lock the page behind it while it is open.
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   useEffect(() => {
     ScrollTrigger.create({
       start: 'top -80px',
@@ -35,6 +55,19 @@ const Header = () => {
           Cafe - The Voyage
         </a>
 
+        <ul className="hidden lg:flex items-center gap-8" role="list">
+          {LINKS.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                className="font-['General_Sans'] text-[#1C1917] hover:text-[#A16207] transition-colors focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg py-2"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
         <div className="flex items-center gap-2 md:gap-6">
           <a 
             href="tel:+918596950267" 
@@ -53,8 +86,45 @@ const Header = () => {
           >
             Book a Table
           </a>
+
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            className="lg:hidden flex items-center justify-center min-h-[44px] min-w-[44px] text-[#1C1917] rounded-lg focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+              {open ? (
+                <><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>
+              ) : (
+                <><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></>
+              )}
+            </svg>
+          </button>
         </div>
       </nav>
+
+      <div
+        id="mobile-menu"
+        hidden={!open}
+        className="lg:hidden border-t border-[#D6D3D1] bg-[#FAFAF9]/95 backdrop-blur-md"
+      >
+        <ul className="px-4 py-3" role="list">
+          {LINKS.map((l) => (
+            <li key={l.href}>
+              <a
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="flex items-center min-h-[52px] font-['General_Sans'] text-lg text-[#1C1917] border-b border-[#E7E5E4] last:border-0 focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg"
+              >
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </header>
   );
 };

@@ -27,7 +27,7 @@ const FAQSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <section className="py-24 bg-[#FAFAF9]" aria-labelledby="faq-heading">
+    <section id="faq" className="py-24 bg-[#FAFAF9]" aria-labelledby="faq-heading">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12">
           <div className="scroll-reveal">
@@ -74,7 +74,12 @@ const FAQSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    
+        <p className="mt-10 text-sm text-[#57534E]">
+          Hours and menu details last verified from the Google listing on{' '}
+          <time dateTime="2026-08-16">16 August 2026</time>.
+        </p>
+</section>
   );
 };
 

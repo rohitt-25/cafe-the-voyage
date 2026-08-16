@@ -64,7 +64,7 @@ const MenuSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 px-6 md:px-12 bg-[#FAFAF9]">
+    <section id="menu" ref={sectionRef} className="py-24 px-6 md:px-12 bg-[#FAFAF9]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
         
         <div className="flex flex-col justify-center reveal-trigger">
@@ -75,7 +75,7 @@ const MenuSection = () => {
             From single-origin brews to plates that taste like a trip abroad — here's what Pune keeps coming back for.
           </p>
           <a 
-            href="https://wa.me/918596950267"
+            href="https://wa.me/918596950267?utm_source=website&utm_medium=cta&utm_campaign=book_table"
             className="inline-flex items-center justify-center w-fit px-6 py-3 bg-[#1C1917] text-[#FFFFFF] rounded-full text-[14px] font-['JetBrains_Mono'] uppercase tracking-[0.04em] hover:scale-102 transition-transform active:scale-96"
           >
             Order Online via WhatsApp

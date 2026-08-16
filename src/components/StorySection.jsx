@@ -2,7 +2,7 @@ import React from 'react';
 
 const StorySection = () => {
   return (
-    <section className="px-6 py-16 md:py-24 bg-[#FAFAF9]">
+    <section id="story" className="px-6 py-16 md:py-24 bg-[#FAFAF9]">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
         {/* Editorial Content Block */}
         <div className="flex flex-col gap-6">
@@ -22,7 +22,7 @@ const StorySection = () => {
         {/* Decorative/Editorial Image Block */}
         <div className="relative border border-[#D6D3D1] rounded-[16px] p-6 bg-[#FFFFFF] shadow-[0_4px_10px_rgba(0,0,0,0.1)]">
           <div className="rounded-[12px] overflow-hidden">
-            <img 
+            <img data-fade 
               src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWn19jT9PySmtgYS3BMvw8ox18bqxJkJL9JwY9QcyMfHA680ND4yAao5F_ZR5cMVVLMZrj-LzJGo7vEArFk3kcKcYaDs14e966vg6o6Dy831ErtS9X5bKmSaprkOf11w2gsuBRtBSRCUVxlb=w1920-h1080-k-no" 
               alt="Cozy interior of Cafe - The Voyage with travel-themed decor"
               className="w-full h-auto object-cover aspect-[4/3]"
