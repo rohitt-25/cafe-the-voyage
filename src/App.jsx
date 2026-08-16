@@ -31,6 +31,7 @@ function App() {
         <TrustStrip />
         <MenuSection />
         <StorySection />
+        <ReviewsSection />
         <SanctuarySection 
           title="Secure Your Table"
           images={{
@@ -43,7 +44,6 @@ function App() {
             img7: "https://lh3.googleusercontent.com/gps-cs-s/AHRPTWl4wiAj8AQ9Rq-kbXftJyiEy3MjQxncO-fuxgMyXDYzFKII_3T7HIKjC6tC6WT7yHzRNtbZHQxMkD9iZ6v2lO7a8Q63mb5juKlUPcvUR681yQy7ecdvwmaealwsqRgdGkwIptuJ=w1920-h1080-k-no"
           }}
         />
-        <ReviewsSection />
         <FAQSection />
       </main>
 
