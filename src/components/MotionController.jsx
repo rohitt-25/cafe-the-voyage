@@ -19,16 +19,50 @@ export default function MotionController() {
     if (reduce) return;
 
     let lenis;
+    let tickerFn;
     let cleanupMagnets = () => {};
 
-    import('lenis').then(({ default: Lenis }) => {
-      lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+    import('lenis')
+      .then(({ default: Lenis }) => {
+        lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+        lenis.on('scroll', ScrollTrigger.update);
 
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => lenis.raf(time * 1000));
-      gsap.ticker.lagSmoothing(0);
-      ScrollTrigger.refresh();
-    });
+        // A throw inside a ticker callback kills GSAP's whole tick loop, which
+        // freezes every animation on the page — not just the smooth scroll.
+        // Guard it and detach on first failure rather than taking motion down.
+        tickerFn = (time) => {
+          try {
+            lenis.raf(time * 1000);
+          } catch {
+            gsap.ticker.remove(tickerFn);
+          }
+        };
+        gsap.ticker.add(tickerFn);
+        gsap.ticker.lagSmoothing(0);
+        ScrollTrigger.refresh();
+      })
+      .catch(() => {
+        // Smooth scroll is a nicety; the page must still scroll and reveal.
+        ScrollTrigger.refresh();
+      });
+
+    /**
+     * Failsafe. Every reveal starts hidden, so if GSAP is blocked, throws, or
+     * simply never ticks, the page silently renders as blank sections — the
+     * worst possible failure. If the intro has not finished in two seconds,
+     * clear the hidden states and show the content unanimated.
+     */
+    const failsafe = setTimeout(() => {
+      const stuck = Array.from(
+        document.querySelectorAll('[data-word] > span, [data-reveal], [data-quote], [data-row]'),
+      ).filter((el) => {
+        const r = el.getBoundingClientRect();
+        const onScreen = r.top < window.innerHeight && r.bottom > 0;
+        return onScreen && parseFloat(getComputedStyle(el).opacity) < 0.1;
+      });
+      if (!stuck.length) return;
+      gsap.set(stuck, { clearProps: 'opacity,transform,y,yPercent' });
+    }, 2000);
 
     // Buttons lean toward the cursor — the cheapest micro-interaction that
     // reads as expensive. Pointer-fine only; it means nothing on touch.
@@ -70,8 +104,10 @@ export default function MotionController() {
     });
 
     return () => {
+      clearTimeout(failsafe);
       cleanupMagnets();
       ctx.revert();
+      if (tickerFn) gsap.ticker.remove(tickerFn);
       lenis?.destroy();
     };
   }, []);

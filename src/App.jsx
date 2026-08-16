@@ -8,6 +8,7 @@ import Gallery from './components/Gallery';
 import Reserve from './components/Reserve';
 import FAQSection from './components/FAQSection';
 import WhatsAppButton from './components/WhatsAppButton';
+import Footer from './components/Footer';
 import { Marquee, Voices } from './components/Atmosphere';
 import { SkipLink, ScrollProgress, BackToTop, useImageFadeIn } from './components/SiteChrome';
 
@@ -40,6 +41,8 @@ function App() {
         <Reserve />
         <FAQSection />
       </main>
+
+      <Footer />
 
       <BackToTop />
       <WhatsAppButton />

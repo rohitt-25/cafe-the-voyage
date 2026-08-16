@@ -127,6 +127,15 @@ const Header = () => {
           ))}
         </ul>
 
+        <a
+          href="tel:+918596950267"
+          onClick={() => setOpen(false)}
+          className="flex min-h-[56px] items-center justify-between border-t border-[color:var(--line)] px-4 font-['General_Sans'] text-[color:var(--ink)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#A16207]/40"
+        >
+          <span className="font-['JetBrains_Mono'] text-[12px] uppercase tracking-[0.18em] text-[color:var(--ink-soft)]">Call us</span>
+          <span className="text-lg font-medium">+91 85969 50267</span>
+        </a>
+
         <div className="flex items-center justify-between gap-4 border-t border-[color:var(--line)] px-4 py-5">
           <AtmosphereToggle />
           <a
