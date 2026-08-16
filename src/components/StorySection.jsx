@@ -2,14 +2,14 @@ import React from 'react';
 
 const StorySection = () => {
   return (
-    <section id="story" className="px-6 py-16 md:py-24 bg-[#FAFAF9]">
+    <section id="story" className="px-6 py-16 md:py-24 bg-[color:var(--bg)]">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-24 items-center">
         {/* Editorial Content Block */}
         <div className="flex flex-col gap-6">
-          <h2 className="text-[28px] md:text-[40px] font-bold text-[#0C0A09] leading-[1.1] font-['Satoshi'] tracking-[-0.02em]">
+          <h2 className="text-[28px] md:text-[40px] font-bold text-[color:var(--ink)] leading-[1.1] font-['Satoshi'] tracking-[-0.02em]">
             Our Story
           </h2>
-          <div className="text-[16px] md:text-[18px] text-[#0C0A09] leading-[1.6] font-['General_Sans'] space-y-6">
+          <div className="text-[16px] md:text-[18px] text-[color:var(--ink)] leading-[1.6] font-['General_Sans'] space-y-6">
             <p>
               Cafe - The Voyage was built for people who want their coffee break to feel like a small trip — travel-themed corners, globally-inspired plates, and a team that treats every table like regulars. 
             </p>

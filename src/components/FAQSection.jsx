@@ -27,11 +27,11 @@ const FAQSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   return (
-    <section id="faq" className="py-24 bg-[#FAFAF9]" aria-labelledby="faq-heading">
+    <section id="faq" className="py-24 bg-[color:var(--bg)]" aria-labelledby="faq-heading">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12">
           <div className="scroll-reveal">
-            <h2 id="faq-heading" className="text-[28px] md:text-[40px] font-bold font-['Satoshi'] text-[#0C0A09] tracking-[-0.02em] mb-6">
+            <h2 id="faq-heading" className="text-[28px] md:text-[40px] font-bold font-['Satoshi'] text-[color:var(--ink)] tracking-[-0.02em] mb-6">
               Frequently Asked Questions
             </h2>
             <p className="text-[16px] md:text-[18px] text-[#64748B] font-['General_Sans'] leading-[1.6]">
@@ -50,7 +50,7 @@ const FAQSection = () => {
                   onClick={() => setActiveIndex(activeIndex === index ? null : index)}
                   aria-expanded={activeIndex === index}
                   aria-controls={`faq-answer-${index}`}
-                  className="w-full text-left p-6 flex justify-between items-center font-['Satoshi'] font-bold text-[#0C0A09] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A16207]"
+                  className="w-full text-left p-6 flex justify-between items-center font-['Satoshi'] font-bold text-[color:var(--ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#A16207]"
                 >
                   {item.question}
                   <span className="text-[#44403C] transition-transform duration-300" aria-hidden="true">
@@ -75,7 +75,7 @@ const FAQSection = () => {
         </div>
       </div>
     
-        <p className="mt-10 text-sm text-[#57534E]">
+        <p className="mt-10 text-sm text-[color:var(--ink-soft)]">
           Hours and menu details last verified from the Google listing on{' '}
           <time dateTime="2026-08-16">16 August 2026</time>.
         </p>

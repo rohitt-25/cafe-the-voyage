@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { AtmosphereToggle } from './Atmosphere';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -6,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const LINKS = [
   { href: '#menu', label: 'Menu' },
-  { href: '#story', label: 'Our Story' },
+  { href: '#gallery', label: 'The Room' },
   { href: '#reviews', label: 'Reviews' },
   { href: '#faq', label: 'FAQ' },
 ];
@@ -68,7 +69,8 @@ const Header = () => {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2 md:gap-6">
+        <div className="flex items-center gap-2 md:gap-4">
+          <div className="hidden sm:block"><AtmosphereToggle /></div>
           <a 
             href="tel:+918596950267" 
             className="flex items-center justify-center min-h-[44px] min-w-[44px] text-[#1C1917] hover:text-[#A16207] transition-colors focus-visible:ring-2 focus-visible:ring-[#A16207] focus-visible:outline-none rounded-lg"

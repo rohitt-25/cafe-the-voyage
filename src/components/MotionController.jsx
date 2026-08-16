@@ -1,79 +1,79 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
+
+/**
+ * Global motion: smooth scroll, magnetic buttons, and section reveals.
+ *
+ * Lenis and ScrollTrigger MUST be wired to each other. Without these three
+ * lines Lenis hijacks scrolling, ScrollTrigger never recalculates, and every
+ * scroll-triggered reveal stays stuck at its opacity-0 start state — the whole
+ * page below the hero silently renders invisible.
+ */
 export default function MotionController() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (reduce) return;
 
-    // Load GSAP dynamically to ensure it's not in the critical path
-    import('gsap').then(({ gsap }) => {
-      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-        gsap.registerPlugin(ScrollTrigger);
+    let lenis;
+    let cleanupMagnets = () => {};
 
-        if (prefersReducedMotion) {
-          gsap.globalTimeline.pause();
-          setIsLoaded(true);
-          return;
-        }
+    import('lenis').then(({ default: Lenis }) => {
+      lenis = new Lenis({ duration: 1.15, smoothWheel: true });
 
-        const ctx = gsap.context(() => {
-          // 1. Hero Parallax
-          const parallaxLayers = document.querySelectorAll('.parallax-layer');
-          parallaxLayers.forEach((layer, i) => {
-            gsap.to(layer, {
-              yPercent: (i + 1) * -8,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: layer.parentElement,
-                scrub: 0.5,
-              },
-            });
-          });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+      ScrollTrigger.refresh();
+    });
 
-          // 2. Section Entrances
-          const revealElements = document.querySelectorAll('.reveal-section');
-          revealElements.forEach((el) => {
-            gsap.from(el, {
-              opacity: 0,
-              y: 12,
-              duration: 0.35,
-              ease: 'power1.out',
-              scrollTrigger: {
-                trigger: el,
-                start: 'top 90%',
-                toggleActions: 'play none none reverse',
-              },
-            });
-          });
+    // Buttons lean toward the cursor — the cheapest micro-interaction that
+    // reads as expensive. Pointer-fine only; it means nothing on touch.
+    if (fine) {
+      const magnets = Array.from(document.querySelectorAll('[data-magnetic]'));
+      const handlers = magnets.map((el) => {
+        const xTo = gsap.quickTo(el, 'x', { duration: 0.5, ease: 'power3' });
+        const yTo = gsap.quickTo(el, 'y', { duration: 0.5, ease: 'power3' });
+        const move = (e) => {
+          const r = el.getBoundingClientRect();
+          xTo((e.clientX - (r.left + r.width / 2)) * 0.22);
+          yTo((e.clientY - (r.top + r.height / 2)) * 0.32);
+        };
+        const reset = () => {
+          xTo(0);
+          yTo(0);
+        };
+        el.addEventListener('mousemove', move);
+        el.addEventListener('mouseleave', reset);
+        return () => {
+          el.removeEventListener('mousemove', move);
+          el.removeEventListener('mouseleave', reset);
+        };
+      });
+      cleanupMagnets = () => handlers.forEach((fn) => fn());
+    }
 
-          // 3. Staggered Card Groups
-          const gridGroups = document.querySelectorAll('.grid-container');
-          gridGroups.forEach((group) => {
-            const items = group.querySelectorAll('.grid-item');
-            gsap.from(items, {
-              opacity: 0,
-              scale: 0.92,
-              y: 16,
-              duration: 0.4,
-              stagger: {
-                each: 0.06,
-                from: 'start',
-                grid: 'auto',
-              },
-              ease: 'back.out(1.4)',
-              scrollTrigger: {
-                trigger: group,
-                start: 'top 85%',
-              },
-            });
-          });
+    // Any section can opt into a reveal without importing GSAP itself.
+    const ctx = gsap.context(() => {
+      gsap.utils.toArray('[data-reveal]').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 36,
+          duration: 0.85,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 82%' },
         });
-
-        setIsLoaded(true);
-        return () => ctx.revert();
       });
     });
+
+    return () => {
+      cleanupMagnets();
+      ctx.revert();
+      lenis?.destroy();
+    };
   }, []);
 
   return null;
